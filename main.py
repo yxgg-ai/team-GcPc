@@ -67,5 +67,50 @@ field_data[0]["stage_priority"] = stage_priority[growth_stage]
 
 print(f"Stage priority: {field_data[0]['stage_priority']}")
 
+# STEP 4 - RISK SEVERITY
+
+risk_score = field_data[0]["risk_score"]
+
+if risk_score >= 0.70:
+    risk_severity = "High"
+elif risk_score >= 0.40:
+    risk_severity = "Moderate"
+else:
+    risk_severity = "Low"
+
+field_data[0]["risk_severity"] = risk_severity
+
+# STEP 5 - RECOMMENDATION ENGINE
+
+risk_type = field_data[0]["risk_type"]
+
+if "Fungal" in risk_type and risk_severity == "High":
+    recommended_action = (
+        "Apply recommended fungicide within 48 hours; "
+        "avoid overhead irrigation"
+    )
+
+elif "Fungal" in risk_type and risk_severity == "Moderate":
+    recommended_action = (
+        "Monitor fungal symptoms closely; "
+        "consider approved fungicide if symptoms increase"
+    )
+
+elif risk_severity == "High":
+    recommended_action = (
+        "Take immediate control measures and seek expert advice"
+    )
+
+else:
+    recommended_action = (
+        "Continue monitoring the field for changes"
+    )
+
+field_data[0]["recommended_action"] = recommended_action
+
+print(f"Recommended action: {recommended_action}")
+
+print(f"Risk severity: {risk_severity}")
+
 print("\nUpdated field data:")
 print(json.dumps(field_data, indent=4))
