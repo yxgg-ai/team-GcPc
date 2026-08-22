@@ -56,5 +56,16 @@ else:
 
 field_data[0]["growth_stage"] = growth_stage
 
+stage_priority = {
+    "Seedling": "Medium",
+    "Vegetative": "Medium",
+    "Flowering": "High",
+    "Maturity": "Low"
+}
+
+field_data[0]["stage_priority"] = stage_priority[growth_stage]
+
+print(f"Stage priority: {field_data[0]['stage_priority']}")
+
 print("\nUpdated field data:")
 print(json.dumps(field_data, indent=4))
