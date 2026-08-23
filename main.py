@@ -141,7 +141,7 @@ field_data[0]["referral_flag"] = referral_flag
 print(f"Referral required: {referral_flag}")
 
 print("\nUpdated field data:")
-print(json.dumps(field_data, indent=4))import json
+print(json.dumps(field_data, indent=2))
 
 
 # ============================================================
