@@ -28,17 +28,13 @@ advisory — not just a label, but a recommended action.
 | Person 5 | Dashboard | `person5-dashboard` |
 
 ## Architecture Overview
-Field Image + Sowing Date
-│
-▼
-Crop Classification (Person 1) ──► Risk Detection (Person 2)
-│ │
-▼ ▼
-Water Advisory (Person 3) Growth Stage + Risk Type
-│ │
-└──────────────┬───────────────────┘
-▼
-Backend Schema (Person 4)
-│
-▼
-Dashboard (Person 5)
+
+```mermaid
+flowchart TD
+    A[Field Image + Sowing Date] --> B[Crop Classification<br/>Person 1]
+    B --> C[Risk Detection<br/>Person 2]
+    A --> D[Water Advisory<br/>Person 3]
+    C --> E[Backend Schema<br/>Person 4]
+    D --> E
+    E --> F[Dashboard<br/>Person 5]
+```
