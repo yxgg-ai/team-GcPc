@@ -47,6 +47,13 @@ growth_stages = {
     "4": "Maturity"
 }
 
+growth_stage_factors = {
+    "Seedling": 0.8,
+    "Vegetative": 1.0,
+    "Flowering": 1.2,
+    "Maturity": 1.0
+}
+
 if stage_choice in growth_stages:
     growth_stage = growth_stages[stage_choice]
     print(f"Growth stage entered: {growth_stage}")
@@ -71,12 +78,18 @@ print(f"Stage priority: {field_data[0]['stage_priority']}")
 
 risk_score = field_data[0]["risk_score"]
 
-if risk_score >= 0.70:
+stage_factor = growth_stage_factors[growth_stage]
+
+adjusted_risk_score = min(risk_score * stage_factor, 1.0)
+
+if adjusted_risk_score >= 0.70:
     risk_severity = "High"
-elif risk_score >= 0.40:
+elif adjusted_risk_score >= 0.40:
     risk_severity = "Moderate"
 else:
     risk_severity = "Low"
+
+field_data[0]["adjusted_risk_score"] = round(adjusted_risk_score, 2)
 
 field_data[0]["risk_severity"] = risk_severity
 
