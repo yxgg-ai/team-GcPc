@@ -72,9 +72,9 @@ SEASON_START = {"rabi": (10, 1), "kharif": (6, 1)}
 CROP_PROFILES = {
     "rabi": {
         "wheat": [
-            (0, 0.15), (30, 0.15), (45, 0.20), (60, 0.32), (75, 0.48),
-            (95, 0.68), (115, 0.80), (130, 0.82), (145, 0.70), (160, 0.45),
-            (175, 0.25), (190, 0.16),
+                        (0, 0.15), (45, 0.15), (60, 0.19), (80, 0.30), (95, 0.45),
+            (115, 0.63), (135, 0.78), (150, 0.82), (165, 0.72), (180, 0.48),
+            (195, 0.26), (210, 0.16),
         ],
         "mustard": [
             (0, 0.15), (15, 0.18), (30, 0.28), (45, 0.45), (60, 0.60),
@@ -119,9 +119,9 @@ CROP_PROFILES = {
 }
 
 # Matching hyperparameters. Sensible defaults; tune only if you have labels.
-SHIFT_RANGE = 21        # +/- days of sowing-date search
-SHIFT_STEP = 3
-TAU = 0.10              # RMSE -> score temperature, controls confidence spread
+SHIFT_RANGE = 35        # +/- days of sowing-date search
+SHIFT_STEP = 5
+TAU = 0.04              # RMSE -> score temperature, controls confidence spread
 MIN_OBS_FOR_TEMPORAL = 3
 BAD_FIT_RMSE = 0.22     # above this, the field matches nothing well
 
@@ -265,7 +265,7 @@ def classify_temporal(obs_days, obs_ndvi, season):
     confidence = scores[top_crop] / total
 
     # Penalise fields that fit nothing well.
-    quality = max(0.20, min(1.0, 1.0 - (top_rmse - 0.06) / 0.20))
+    quality = max(0.20, min(1.0, 1.0 - (top_rmse - 0.06) / 0.30))
     confidence *= quality
 
     if top_rmse > BAD_FIT_RMSE:

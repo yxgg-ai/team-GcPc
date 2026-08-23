@@ -28,13 +28,20 @@
 // which is wheat and sugarcane country. Replace the coordinates with your
 // actual pilot area when you know it. Format is [west, south, east, north].
 
+// Boxes are ~0.0012 degrees, roughly 130m, which is about one real parcel.
+// Do NOT make these bigger. At 0.006 degrees (600m) you average twenty-odd
+// separate fields together and the peak gets smeared flat.
+//
+// F001 and F004 were relocated after the originals turned out to be
+// settlement / permanent fallow (NDVI never rose above 0.38).
+
 var FIELDS = ee.FeatureCollection([
-  ee.Feature(ee.Geometry.Rectangle([77.700, 29.400, 77.706, 29.406]), {field_id: 'F001'}),
-  ee.Feature(ee.Geometry.Rectangle([77.720, 29.410, 77.726, 29.416]), {field_id: 'F002'}),
-  ee.Feature(ee.Geometry.Rectangle([77.740, 29.395, 77.746, 29.401]), {field_id: 'F003'}),
-  ee.Feature(ee.Geometry.Rectangle([77.760, 29.420, 77.766, 29.426]), {field_id: 'F004'}),
-  ee.Feature(ee.Geometry.Rectangle([77.780, 29.385, 77.786, 29.391]), {field_id: 'F005'}),
-  ee.Feature(ee.Geometry.Rectangle([77.800, 29.430, 77.806, 29.436]), {field_id: 'F006'})
+  ee.Feature(ee.Geometry.Rectangle([77.7130, 29.4055, 77.7142, 29.4067]), {field_id: 'F001'}),
+  ee.Feature(ee.Geometry.Rectangle([77.7224, 29.4124, 77.7236, 29.4136]), {field_id: 'F002'}),
+  ee.Feature(ee.Geometry.Rectangle([77.7424, 29.3974, 77.7436, 29.3986]), {field_id: 'F003'}),
+  ee.Feature(ee.Geometry.Rectangle([77.7712, 29.4168, 77.7724, 29.4180]), {field_id: 'F004'}),
+  ee.Feature(ee.Geometry.Rectangle([77.7824, 29.3874, 77.7836, 29.3886]), {field_id: 'F005'}),
+  ee.Feature(ee.Geometry.Rectangle([77.8024, 29.4324, 77.8036, 29.4336]), {field_id: 'F006'})
 ]);
 
 // Option B (later): draw your own polygons with the geometry tool in the
@@ -48,10 +55,18 @@ var FIELDS = ee.FeatureCollection([
 // ===========================================================================
 // 2. SEASON WINDOW
 // ===========================================================================
-// Rabi: Oct 1 to Apr 15.  Kharif: Jun 1 to Nov 30.
+// Rabi: Nov 1 to Apr 15.  Kharif: Jun 1 to Nov 30.
 // Must match the --season flag you pass to crop_classify.py.
+//
+// NOTE ON THE RABI START DATE: do NOT start this on Oct 1. In northern India
+// the kharif crop (rice, sugarcane) is still standing in early October, so an
+// October start puts the tail of the PREVIOUS crop at the front of every
+// curve. The classifier then tries to fit two crops with one profile and
+// confidence collapses. Nov 1 is late enough that fields are cleared.
+// Tradeoff: mustard is sown mid-October, so you lose its first few weeks. Its
+// peak and senescence still land inside the window, which is what matters.
 
-var START = '2024-10-01';
+var START = '2024-11-01';
 var END   = '2025-04-15';
 
 
@@ -101,9 +116,16 @@ var samples = s2.map(function(img) {
     reducer: ee.Reducer.mean(),
     scale: 10                       // Sentinel-2 native resolution, metres
   }).map(function(f) {
-    return f
-      .set('date', d)
-      .select(['field_id', 'date', 'mean'], ['field_id', 'date', 'ndvi']);
+    // Build the feature explicitly rather than using .select(). When a field is
+    // fully cloud-masked on a given date, reduceRegions omits the 'mean'
+    // property altogether instead of returning null, and .select() then fails
+    // with "Selected a different number of properties than names".
+    // ee.Feature(null, ...) also drops geometry, which keeps the CSV small.
+    return ee.Feature(null, {
+      field_id: f.get('field_id'),
+      date: d,
+      ndvi: f.get('mean')
+    });
   });
 }).flatten().filter(ee.Filter.notNull(['ndvi']));
 

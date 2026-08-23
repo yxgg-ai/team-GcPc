@@ -2,69 +2,127 @@
   {
     "field_id": "F001",
     "crop": "Wheat",
-    "confidence_or_score": 0.9,
-    "growth_stage": "Vegetative",
+    "confidence_or_score": 0.712,
+    "growth_stage": "Harvested",
     "stress_level": null,
     "stress_score": null,
     "water_deficit_mm": null,
     "irrigation_priority": null,
     "recommendation": null,
-    "method": "dummy",
-    "n_observations": 0,
-    "runner_up": "Mustard",
-    "sowing_shift_days": 0,
-    "season": "rabi",
-    "version": "0.3.0"
-  },
-  {
-    "field_id": "F002",
-    "crop": "Mustard",
-    "confidence_or_score": 0.83,
-    "growth_stage": "Flowering",
-    "stress_level": null,
-    "stress_score": null,
-    "water_deficit_mm": null,
-    "irrigation_priority": null,
-    "recommendation": null,
-    "method": "dummy",
-    "n_observations": 0,
+    "method": "temporal_profile_match",
+    "n_observations": 27,
     "runner_up": "Gram",
     "sowing_shift_days": 0,
     "season": "rabi",
-    "version": "0.3.0"
+    "version": "0.3.0",
+    "date_range": [
+      "2024-11-04",
+      "2025-04-13"
+    ]
+  },
+  {
+    "field_id": "F002",
+    "crop": "Wheat",
+    "confidence_or_score": 0.576,
+    "growth_stage": "Harvested",
+    "stress_level": null,
+    "stress_score": null,
+    "water_deficit_mm": null,
+    "irrigation_priority": null,
+    "recommendation": null,
+    "method": "temporal_profile_match",
+    "n_observations": 28,
+    "runner_up": "Gram",
+    "sowing_shift_days": -10,
+    "season": "rabi",
+    "version": "0.3.0",
+    "date_range": [
+      "2024-11-04",
+      "2025-04-13"
+    ]
   },
   {
     "field_id": "F003",
     "crop": "Gram",
-    "confidence_or_score": 0.76,
-    "growth_stage": "Maturity",
+    "confidence_or_score": 0.252,
+    "growth_stage": "Harvested",
     "stress_level": null,
     "stress_score": null,
     "water_deficit_mm": null,
     "irrigation_priority": null,
     "recommendation": null,
-    "method": "dummy",
-    "n_observations": 0,
-    "runner_up": "Sugarcane",
-    "sowing_shift_days": 0,
+    "method": "temporal_profile_match",
+    "n_observations": 28,
+    "runner_up": "Mustard",
+    "sowing_shift_days": 25,
     "season": "rabi",
-    "version": "0.3.0"
+    "version": "0.3.0",
+    "date_range": [
+      "2024-11-04",
+      "2025-04-13"
+    ]
   },
   {
     "field_id": "F004",
-    "crop": "Sugarcane",
-    "confidence_or_score": 0.69,
-    "growth_stage": "Emergence",
+    "crop": "Fallow",
+    "confidence_or_score": 0.939,
+    "growth_stage": "Pre-Sowing",
     "stress_level": null,
     "stress_score": null,
     "water_deficit_mm": null,
     "irrigation_priority": null,
     "recommendation": null,
-    "method": "dummy",
-    "n_observations": 0,
-    "runner_up": "Wheat",
+    "method": "temporal_profile_match",
+    "n_observations": 27,
+    "runner_up": "Gram",
+    "sowing_shift_days": -30,
+    "season": "rabi",
+    "version": "0.3.0",
+    "date_range": [
+      "2024-11-04",
+      "2025-04-13"
+    ]
+  },
+  {
+    "field_id": "F005",
+    "crop": "Wheat",
+    "confidence_or_score": 0.304,
+    "growth_stage": "Harvested",
+    "stress_level": null,
+    "stress_score": null,
+    "water_deficit_mm": null,
+    "irrigation_priority": null,
+    "recommendation": null,
+    "method": "temporal_profile_match",
+    "n_observations": 28,
+    "runner_up": "Gram",
+    "sowing_shift_days": -5,
+    "season": "rabi",
+    "version": "0.3.0",
+    "date_range": [
+      "2024-11-04",
+      "2025-04-13"
+    ]
+  },
+  {
+    "field_id": "F006",
+    "crop": "Wheat",
+    "confidence_or_score": 0.278,
+    "growth_stage": "Harvested",
+    "stress_level": null,
+    "stress_score": null,
+    "water_deficit_mm": null,
+    "irrigation_priority": null,
+    "recommendation": null,
+    "method": "temporal_profile_match",
+    "n_observations": 26,
+    "runner_up": "Gram",
     "sowing_shift_days": 0,
     "season": "rabi",
-    "version": "0.3.0"
+    "version": "0.3.0",
+    "date_range": [
+      "2024-11-04",
+      "2025-04-13"
+    ]
   }
 ]
