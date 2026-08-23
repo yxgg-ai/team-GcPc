@@ -18,14 +18,14 @@ detects early disease/pest risk from crop images and gives farmers timely, confi
 advisory — not just a label, but a recommended action.
 
 ## Team Structure
-
-| Person | Module | Branch |
-|---|---|---|
-| Person 1 | Crop Classification | `person1-classification` |
-| Person 2 | Crop Health Risk Detection (AI/ML engine) | `person2-remote-sensing` |
-| Person 3 | Water / Irrigation Advisory | `person3-water-advisory` |
-| Person 4 | Backend & Schema Integration | `person4-backend` |
-| Person 5 | Dashboard | `person5-dashboard` |
+| Person | Name | Module | Branch |
+|---|---|---|---|
+| Person 1 | Yug Goel | Crop Classification | `person1-classification` |
+| Person 2 | Purusharth Tyagi | Crop Health Risk Detection (AI/ML engine) | `person2-remote-sensing` |
+| Person 3 | Abhinav Jha | Water / Irrigation Advisory | `person3-water-advisory` |
+| Person 4 | Moulik Dheer | Backend & Schema Integration | `person4-backend` |
+| Person 5 | Tanishka Valecha | Dashboard | `person5-dashboard` |
+| Person 6 | Avnii Nirwan | Presentation (PPT) | — |
 
 ## Architecture Overview
 
