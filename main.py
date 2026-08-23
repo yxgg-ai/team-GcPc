@@ -125,5 +125,20 @@ print(f"Recommended action: {recommended_action}")
 
 print(f"Risk severity: {risk_severity}")
 
+# STEP 6 - REFERRAL CHECK
+
+confidence_score = field_data[0]["confidence_or_score"]
+
+referral_threshold = 0.60
+
+if confidence_score < referral_threshold:
+    referral_flag = True
+else:
+    referral_flag = False
+
+field_data[0]["referral_flag"] = referral_flag
+
+print(f"Referral required: {referral_flag}")
+
 print("\nUpdated field data:")
 print(json.dumps(field_data, indent=4))
