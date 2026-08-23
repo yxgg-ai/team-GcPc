@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from torchvision import models, transforms
+from growth_stage import get_growth_stage
 from PIL import Image
 import json
 import sys
@@ -44,7 +45,8 @@ def load_model(model_path):
     return model
 
 # ---- Predict single image ----
-def predict_image(model, image_path, field_id="F001", crop="Wheat", growth_stage="Flowering"):
+def predict_image(model, image_path, field_id="F001", crop="Wheat", sowing_date="2026-06-25"):
+    growth_stage = get_growth_stage(sowing_date)
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
