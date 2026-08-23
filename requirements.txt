@@ -1,0 +1,9 @@
+# crop_classify.py needs NONE of these. It is pure standard library on purpose,
+# so the baseline runs anywhere even if this install fails.
+#
+# These are only for the optional Day 2 Random Forest and confusion matrix.
+
+scikit-learn
+numpy
+pandas
+matplotlib
