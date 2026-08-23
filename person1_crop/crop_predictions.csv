@@ -1,0 +1,5 @@
+field_id,crop,confidence_or_score,growth_stage,stress_level,stress_score,water_deficit_mm,irrigation_priority,recommendation,method,n_observations,runner_up,sowing_shift_days,season,version
+F001,Wheat,0.9,Vegetative,,,,,,dummy,0,Mustard,0,rabi,0.3.0
+F002,Mustard,0.83,Flowering,,,,,,dummy,0,Gram,0,rabi,0.3.0
+F003,Gram,0.76,Maturity,,,,,,dummy,0,Sugarcane,0,rabi,0.3.0
+F004,Sugarcane,0.69,Emergence,,,,,,dummy,0,Wheat,0,rabi,0.3.0
