@@ -178,18 +178,40 @@ def detect_risk(field_id):
 # ---- MODULE 3: Person 3's advisory engine ----
 @safe_call(SAFE_DEFAULT_ADVISORY)
 def generate_advisory(field_id, risk_score, confidence_or_score):
-    dummy = {
-        "F001": {"recommended_action": "Apply recommended fungicide within 48 hours; avoid overhead irrigation",
-                  "safe_usage_note": "Use only approved fungicide at label dosage; observe pre-harvest interval",
-                  "referral_flag": False},
-        "F002": {"recommended_action": "Continue routine monitoring",
-                  "safe_usage_note": "No pesticide action required at this time",
-                  "referral_flag": False},
-        "F003": {"recommended_action": "Monitor closely; consider neem-based biocontrol if spread continues",
-                  "safe_usage_note": "Prefer biocontrol before chemical intervention at this stage",
-                  "referral_flag": True},
-    }
-    return dummy.get(field_id, dict(SAFE_DEFAULT_ADVISORY))
+    """
+    Reads Person 3's precomputed advisory output.
+    """
+
+    project_root = os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    )
+
+    advisory_file = os.path.join(
+        project_root,
+        "person3_output.json"
+    )
+
+    with open(advisory_file, "r", encoding="utf-8") as file:
+        predictions = json.load(file)
+
+    for record in predictions:
+        if record.get("field_id") == field_id:
+            return {
+                "recommended_action": record.get(
+                    "recommended_action",
+                    "Manual inspection recommended"
+                ),
+                "safe_usage_note": record.get(
+                    "safe_usage_note",
+                    "Consult a local agricultural extension officer"
+                ),
+                "referral_flag": record.get(
+                    "referral_flag",
+                    True
+                )
+            }
+
+    return dict(SAFE_DEFAULT_ADVISORY)
 
 # ---- ASSEMBLES THE FULL RECORD — this is what app.py calls ----
 def get_field_data(field_id):
