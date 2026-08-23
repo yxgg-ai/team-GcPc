@@ -1,7 +1,0 @@
-field_id,crop,confidence_or_score,growth_stage,stress_level,stress_score,water_deficit_mm,irrigation_priority,recommendation,method,n_observations,runner_up,sowing_shift_days,season,version
-F001,Wheat,0.712,Harvested,,,,,,temporal_profile_match,27,Gram,0,rabi,0.3.0
-F002,Wheat,0.576,Harvested,,,,,,temporal_profile_match,28,Gram,-10,rabi,0.3.0
-F003,Gram,0.252,Harvested,,,,,,temporal_profile_match,28,Mustard,25,rabi,0.3.0
-F004,Fallow,0.939,Pre-Sowing,,,,,,temporal_profile_match,27,Gram,-30,rabi,0.3.0
-F005,Wheat,0.304,Harvested,,,,,,temporal_profile_match,28,Gram,-5,rabi,0.3.0
-F006,Wheat,0.278,Harvested,,,,,,temporal_profile_match,26,Gram,0,rabi,0.3.0
