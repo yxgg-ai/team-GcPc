@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn as nn
 from torchvision import models, transforms
@@ -46,14 +47,22 @@ def load_model(model_path):
 
 # ---- Predict single image ----
 def predict_image(model, image_path, field_id="F001", crop="Wheat", sowing_date="2026-06-25"):
+    if not os.path.exists(image_path):
+        raise FileNotFoundError(f"Image not found: {image_path}")
+
+    try:
+        image = Image.open(image_path).convert("RGB")
+    except Exception as e:
+        raise ValueError(f"Could not read image {image_path}: {e}")
+
     growth_stage = get_growth_stage(sowing_date)
+
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
 
-    image = Image.open(image_path).convert("RGB")
     image_tensor = transform(image).unsqueeze(0).to(device)
 
     with torch.no_grad():
