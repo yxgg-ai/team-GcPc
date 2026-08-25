@@ -57,28 +57,13 @@ print("3. Flowering")
 print("4. Maturity")
 
 stage_choice = input("Enter your choice (1-4): ")
+growth_stage = get_growth_stage(stage_choice)
 
-growth_stages = {
-    "1": "Seedling",
-    "2": "Vegetative",
-    "3": "Flowering",
-    "4": "Maturity"
-}
-
-growth_stage_factors = {
-    "Seedling": 0.8,
-    "Vegetative": 1.0,
-    "Flowering": 1.2,
-    "Maturity": 1.0
-}
-
-if stage_choice in growth_stages:
-    growth_stage = growth_stages[stage_choice]
+if growth_stage is not None:
     print(f"Growth stage entered: {growth_stage}")
 else:
     print("Invalid choice. Please select a number from 1 to 4.")
-    growth_stage = None
-
+    exit()
 field_data[0]["growth_stage"] = growth_stage
 
 stage_priority = {
