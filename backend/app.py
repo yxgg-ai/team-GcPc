@@ -1,8 +1,10 @@
 # app.py
 from flask import Flask, jsonify
+from flask_cors import CORS
 from pipeline import get_field_data, get_all_field_ids, get_field_locations
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/fields")
 def fields():
